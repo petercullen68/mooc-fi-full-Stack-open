@@ -4,14 +4,14 @@ sequenceDiagram
 
     browser->>server: POST https://studies.cs.helsinki.fi/exampleapp/new_note
     activate server
-    server-->>browser: HTML document (resends the page)
+    server-->>browser: HTML document (sends the page)
     deactivate server
 
     Note right of browser: Browser sends form data (note)
 
     browser->>server: GET https://studies.cs.helsinki.fi/exampleapp/notes
     activate server
-    server-->>browser: HTML document
+    server-->>browser: HTML document (sends the page)
     deactivate server
 
     browser->>server: GET https://studies.cs.helsinki.fi/exampleapp/main.css
@@ -28,7 +28,7 @@ sequenceDiagram
 
     browser->>server: GET https://studies.cs.helsinki.fi/exampleapp/data.json
     activate server
-    server-->>browser: [{ "content": "HTML is easy", "date": "2023-1-1" }, ... ]
+    server-->>browser: [{ [{"content":"Hello underWorld -Iran","date":"2026-03-03T03:19:40.009Z"} }, ... ]
     deactivate server
 
     Note right of browser: The browser executes the callback function that renders the notes
