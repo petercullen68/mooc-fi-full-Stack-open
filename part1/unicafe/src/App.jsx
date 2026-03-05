@@ -16,9 +16,6 @@ const StatisticLine = ({ count, text, unit }) => {
 
 const Statistics = ({ good, neutral, bad }) => {
   const total = good + bad + neutral
-
-
-
   let average = 0
   let positiveFeedback = 0
   if (total > 0) {
