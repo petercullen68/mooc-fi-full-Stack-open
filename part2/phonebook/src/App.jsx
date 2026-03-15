@@ -3,13 +3,14 @@ import Filter from './components/Filter'
 import Persons from './components/Persons'
 import personService from './services/person'
 import PersonForm from './components/PersonForm'
-import './App.css'
+import Notification from './components/Notification'
 
 const App = () => {
   const [persons, setPersons] = useState([])
   const [newName, setNewName] = useState('')
   const [newNumber, setNewNumber] = useState('')
   const [filterStart, setFilterStart] = useState('')
+  const [notification, setNotification] = useState(null)
 
   useEffect(() => {
     personService
@@ -18,6 +19,17 @@ const App = () => {
         setPersons(initialPersons)
       })
   }, [])
+
+  const displayNotification = ( message, type) => {
+    const newNotification = {
+      message: message,
+      type: type
+    }
+    setNotification(newNotification)
+    setTimeout(() => {
+      setNotification(null)
+    }, 5000)
+  }
 
   const filteredArray = persons.filter(x => x.name.trim()
     .toLocaleUpperCase()
@@ -55,18 +67,21 @@ const App = () => {
     } else {
       enteredPerson.id = max.id + 1
       setPersons(persons.concat(enteredPerson))
+      displayNotification(`Added ${enteredPerson.name}`, "success")
     }
     setNewName("")
     setNewNumber("")
   }
 
   const deletePerson = person => {
-    console.log(person.id)
     if (window.confirm(`Delete ${person.name} ?`)) {
       personService
         .deletePerson(person.id)
-        .then(() => {
-          const newPersons  = persons.filter(x => x.id !== person.id)
+        .catch(() => {
+          displayNotification(`Information of ${person.name} has already been removed from the server`, "error")
+        })
+        .finally(() => {
+          const newPersons = persons.filter(x => x.id !== person.id)
           setPersons(newPersons)
         })
     }
@@ -87,6 +102,7 @@ const App = () => {
   return (
     <div>
       <h2>Phonebook</h2>
+      <Notification notification={notification} />
       <Filter handleFilterChange={handleFilterChange} filterStart={filterStart} />
       <h2>add a new</h2>
       <PersonForm addPerson={addPerson} newName={newName} handleNameChange={handleNameChange} newNumber={newNumber} handleNumberChange={handleNumberChange} />
