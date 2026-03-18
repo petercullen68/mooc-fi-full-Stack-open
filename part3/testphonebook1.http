@@ -1,3 +1,76 @@
 
 # test 3.1
 GET http://localhost:3001/api/persons
+
+# test 3.2
+###
+GET http://localhost:3001/api/info
+
+# test 3.3 (found)
+###
+GET http://localhost:3001/api/persons/1
+
+
+# test 3.3 (not found)
+###
+GET http://localhost:3001/api/persons/4400
+
+
+# test 3.4 (found)
+###
+DELETE http://localhost:3001/api/persons/1
+
+# test 3.4 (not found)
+###
+DELETE http://localhost:3001/api/persons/4444
+
+###
+# test 3.5
+POST http://localhost:3001/api/persons
+content-type: application/json
+
+{
+    "name": "Peter Cullen",
+    "number": "484-983-7951"
+}
+###
+
+# test 3.6 (Already exists)
+POST http://localhost:3001/api/persons
+content-type: application/json
+
+{
+    "name": "Peter Cullen",
+    "number": "484-983-7951"
+}
+###
+
+# test 3.6 (no name)
+POST http://localhost:3001/api/persons
+content-type: application/json
+
+{
+    "nam": "Peter Cullen",
+    "number": "484-983-7951"
+}
+###
+
+# test 3.6 (no number)
+POST http://localhost:3001/api/persons
+content-type: application/json
+
+{
+    "name": "Peter Cullen",
+    "numbr": "484-983-7951"
+}
+###
+
+# test 3.6 (no number or name)
+POST http://localhost:3001/api/persons
+content-type: application/json
+
+{
+    "nam": "Peter Cullen",
+    "numbr": "484-983-7951"
+}
+###

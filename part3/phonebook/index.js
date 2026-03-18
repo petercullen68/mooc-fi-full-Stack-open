@@ -1,7 +1,24 @@
 const express = require("express");
 const app = express();
+const morgan = require("morgan")
 
 app.use(express.json());
+
+morgan.token("bodyToJson", function (req, res) {
+  return JSON.stringify(req.body);
+});
+app.use(morgan(function (tokens, req, res) {
+  return [
+    tokens.method(req, res),
+    tokens.url(req, res),
+    tokens.status(req, res),
+    tokens.res(req, res, "content-length"),
+    "-",
+    tokens["response-time"](req, res),
+    "ms",
+    tokens["bodyToJson"](req, res),
+  ].join(" ");
+}));
 
 let phonebook = [
   {
@@ -72,7 +89,7 @@ app.post("/api/persons", (request, response) => {
     });
   }
 
-  const checkForExistence = (phonebook.findIndex(x => x.name = body.name) >= 0)
+  const checkForExistence = (phonebook.findIndex(x => x.name == body.name) >= 0)
   if (checkForExistence) {
     return response.status(409).json({
       error: "name already exists",
