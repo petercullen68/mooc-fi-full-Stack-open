@@ -1,0 +1,76 @@
+
+# test 3.1
+GET https://mooc-fi-full-stack-open.onrender.com/api/persons
+
+# test 3.2
+###
+GET https://mooc-fi-full-stack-open.onrender.com/api/info
+
+# test 3.3 (found)
+###
+GET https://mooc-fi-full-stack-open.onrender.com/api/persons/1
+
+
+# test 3.3 (not found)
+###
+GET https://mooc-fi-full-stack-open.onrender.com/api/persons/4400
+
+
+# test 3.4 (found)
+###
+DELETE https://mooc-fi-full-stack-open.onrender.com/api/persons/1
+
+# test 3.4 (not found)
+###
+DELETE https://mooc-fi-full-stack-open.onrender.com/api/persons/4444
+
+###
+# test 3.5
+POST https://mooc-fi-full-stack-open.onrender.com/api/persons
+content-type: application/json
+
+{
+    "name": "Peter Cullen",
+    "number": "484-983-7951"
+}
+###
+
+# test 3.6 (Already exists)
+POST https://mooc-fi-full-stack-open.onrender.com/api/persons
+content-type: application/json
+
+{
+    "name": "Peter Cullen",
+    "number": "484-983-7951"
+}
+###
+
+# test 3.6 (no name)
+POST https://mooc-fi-full-stack-open.onrender.com/api/persons
+content-type: application/json
+
+{
+    "nam": "Peter Cullen",
+    "number": "484-983-7951"
+}
+###
+
+# test 3.6 (no number)
+POST https://mooc-fi-full-stack-open.onrender.com/api/persons
+content-type: application/json
+
+{
+    "name": "Peter Cullen",
+    "numbr": "484-983-7951"
+}
+###
+
+# test 3.6 (no number or name)
+POST https://mooc-fi-full-stack-open.onrender.com/api/persons
+content-type: application/json
+
+{
+    "nam": "Peter Cullen",
+    "numbr": "484-983-7951"
+}
+###
