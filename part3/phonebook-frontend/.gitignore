@@ -1,14 +1,3 @@
-
-.vscode/settings.json
-
-part0/0.1/
-
-part0/0.2/
-
-part0/0.3/
-
-scratch/
-
 # Logs
 logs
 *.log
@@ -19,6 +8,7 @@ pnpm-debug.log*
 lerna-debug.log*
 
 node_modules
+dist
 dist-ssr
 *.local
 
