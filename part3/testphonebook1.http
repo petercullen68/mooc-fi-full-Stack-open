@@ -8,17 +8,17 @@ GET http://localhost:3001/api/info
 
 # test 3.3 (found)
 ###
-GET http://localhost:3001/api/persons/1
+GET http://localhost:3001/api/persons/69bd4f5d425a8aa057fa33dc
 
 
 # test 3.3 (not found)
 ###
-GET http://localhost:3001/api/persons/4400
+GET http://localhost:3001/api/persons/69bd4f5d425a8aa057fa33db
 
 
 # test 3.4 (found)
 ###
-DELETE http://localhost:3001/api/persons/1
+DELETE http://localhost:3001/api/persons/69bd4f5d425a8aa057fa33dc
 
 # test 3.4 (not found)
 ###
