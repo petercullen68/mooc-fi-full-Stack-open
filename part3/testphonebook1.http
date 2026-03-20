@@ -18,7 +18,7 @@ GET http://localhost:3001/api/persons/69bd4f5d425a8aa057fa33db
 
 # test 3.4 (found)
 ###
-DELETE http://localhost:3001/api/persons/69bd4f5d425a8aa057fa33dc
+DELETE http://localhost:3001/api/persons/69bd93098d933e0b107b31fd
 
 # test 3.4 (not found)
 ###
@@ -72,5 +72,14 @@ content-type: application/json
 {
     "nam": "Peter Cullen",
     "numbr": "484-983-7951"
+}
+###
+
+PUT http://localhost:3001/api/persons/69bd4f67e69c241037476fa5
+content-type: application/json
+
+{
+    "name": "Peter Cullen",
+    "number": "484-983-7951"
 }
 ###

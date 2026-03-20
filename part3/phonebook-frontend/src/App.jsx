@@ -39,9 +39,6 @@ const App = () => {
 
 
   const addPerson = (event) => {
-    const max = persons.reduce(function (prev, current) {
-      return (prev && prev.id > current.id) ? prev : current
-    })
     event.preventDefault()
     const enteredPerson = {
       name: newName.trim(),
@@ -54,7 +51,7 @@ const App = () => {
         enteredPerson.id = foundPerson.id
         personService
           .updatePerson(enteredPerson.id, enteredPerson)
-          .then((changedPerson) => {
+          .then(changedPerson => {
             const updatedPersons = persons.map(person => {
               if (person.id === changedPerson.id) {
                 return changedPerson; 
@@ -65,8 +62,11 @@ const App = () => {
           })
       }
     } else {
-      enteredPerson.id = max.id + 1
-      setPersons(persons.concat(enteredPerson))
+      personService
+        .addPerson(enteredPerson)
+        .then(newPerson => {
+          setPersons(persons.concat(newPerson))
+        })
       displayNotification(`Added ${enteredPerson.name}`, "success")
     }
     setNewName("")
