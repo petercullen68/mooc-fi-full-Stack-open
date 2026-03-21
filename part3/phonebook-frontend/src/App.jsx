@@ -60,14 +60,21 @@ const App = () => {
             });
             setPersons(updatedPersons)
           })
+          .catch(error => {
+            displayNotification(`${error.response.data.error}`, "error")
+          })
       }
     } else {
       personService
         .addPerson(enteredPerson)
         .then(newPerson => {
           setPersons(persons.concat(newPerson))
+          displayNotification(`Added ${enteredPerson.name}`, "success")
         })
-      displayNotification(`Added ${enteredPerson.name}`, "success")
+        .catch(error => {
+          displayNotification(`${error.response.data.error}`, "error")
+        })
+      
     }
     setNewName("")
     setNewNumber("")
