@@ -1,6 +1,6 @@
 import { isNotNumber, isPositive } from "./utils";
 
-const calculateBmi = (height: number, weight: number) => {
+export const calculateBmi = (height: number, weight: number) => {
   if (isNotNumber(height) || isNotNumber(weight) || !isPositive(height) || !isPositive(weight)) {
     throw new Error("Height and weight must be positive");
   }
@@ -17,17 +17,3 @@ const calculateBmi = (height: number, weight: number) => {
       return "Obesity range";
   }
 };
-
-try {
-  const inputHeight: number = Number(process.argv[2]);
-  const inputWeight: number = Number(process.argv[3]);
-  console.log(
-    `The BMI range for the entered height ${inputHeight} and weight ${inputWeight} is ${calculateBmi(inputHeight, inputWeight)}`,
-  );
-} catch (error: unknown) {
-  let errorMessage = "Something went wrong: ";
-  if (error instanceof Error) {
-    errorMessage += error.message;
-  }
-  console.log(errorMessage);
-}

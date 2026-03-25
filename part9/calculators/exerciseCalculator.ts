@@ -15,7 +15,7 @@ interface CalculatorResult {
   average: number;
 }
 
-const parseArguments = (args: string[]): TargetAndDays => {
+export const parseArguments = (args: string[]): TargetAndDays => {
   if (args.length < 4) throw new Error("Not enough arguments");
   const checkArray: number[] = args.slice(2).map(Number);
   checkArray.forEach((value) => {
@@ -32,7 +32,7 @@ const parseArguments = (args: string[]): TargetAndDays => {
   };
 };
 
-const exerciseCalculator = (
+export const exerciseCalculator = (
   target: number,
   daysTraining: number[],
 ): CalculatorResult => {
@@ -65,14 +65,3 @@ const exerciseCalculator = (
     average: average,
   };
 };
-
-try {
-  const { target, daysTraining } = parseArguments(process.argv);
-  console.log(exerciseCalculator(target, daysTraining));
-} catch (error: unknown) {
-  let errorMessage = "Something bad happened.";
-  if (error instanceof Error) {
-    errorMessage += " Error: " + error.message;
-  }
-  console.log(errorMessage);
-}
