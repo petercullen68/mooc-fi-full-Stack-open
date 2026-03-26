@@ -10,8 +10,8 @@
     "tsc": "tsc",
     "ts-node": "ts-node",
     "lint": "eslint .",
-    "start": "ts-node index.ts",
-    "dev": "tsx watch index.ts"
+    "start": "ts-node src/index.ts",
+    "dev": "tsx watch src/index.ts"
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
