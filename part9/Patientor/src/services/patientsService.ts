@@ -19,11 +19,7 @@ const getPatientsSensitive = (): PatientSensitive[] => {
 const addPatient = (patient: NewPatient): PatientSensitive => {
   const newPatient = {
     id: randomUUID(),
-    name: patient.name,
-    dateOfBirth: patient.dateOfBirth,
-    ssn: patient.ssn,
-    gender: patient.gender,
-    occupation: patient.occupation,
+    ...patient,
   };
   patientsData.push(newPatient);
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
