@@ -1,0 +1,56 @@
+body {
+  font-family: Georgia, serif;
+  line-height: 1.6;
+  padding: 20px;
+  max-width: 700px;
+  margin: 0;
+  /* ← remove auto-centering */
+  text-align: left;
+  /* ← enforce left alignment */
+  background-color: #f9f9f9;
+}
+
+/* Main title */
+h1 {
+  margin-bottom: 30px;
+  text-align: left;
+}
+
+/* Remove default list styling */
+ul {
+  list-style: none;
+  padding-left: 0;
+  margin-left: 0;
+}
+
+/* Each course block */
+li {
+  margin-bottom: 20px;
+  text-align: left;
+}
+
+/* Section styling */
+section {
+  padding: 10px 0;
+  border-bottom: 1px solid #ddd;
+  text-align: left;
+}
+
+/* Headings */
+h2 {
+  margin-bottom: 5px;
+  text-align: left;
+}
+
+/* Paragraph spacing */
+p {
+  margin: 5px 0;
+  text-align: left;
+}
+
+/* Links */
+a {
+  color: #1a73e8;
+  text-decoration: underline;
+  text-align: left;
+}

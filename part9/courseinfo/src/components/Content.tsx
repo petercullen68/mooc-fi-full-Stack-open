@@ -1,12 +1,19 @@
 import type { JSX } from "react";
-import type { CourseDetails } from "../types";
+import type { CoursePart } from "../types";
+import Part from "./Part";
 
-const Content = ({ courseParts }: { courseParts: CourseDetails[] }): JSX.Element => (
-    <div>
-      <p>{courseParts[0].name} {courseParts[0].exerciseCount}</p>
-      <p>{courseParts[1].name} {courseParts[1].exerciseCount}</p>
-      <p>{courseParts[2].name} {courseParts[2].exerciseCount}</p>
-    </div>
+const Content = ({
+  courseParts,
+}: {
+  courseParts: CoursePart[];
+}): JSX.Element => (
+  <ul>
+    {courseParts.map((course) => (
+      <li key={course.name}>
+        <Part coursePart={course} />
+      </li>
+    ))}
+  </ul>
 );
 
-export default Content
+export default Content;
