@@ -1,4 +1,87 @@
 GET http://localhost:3001/api/ping
 
 ###
+GET http://localhost:3001/api/diagnoses
+
+
+###
 GET http://localhost:3001/api/patients
+
+###
+GET http://localhost:3001/api/patients/d2773336-f723-11e9-8f0b-362b9e155667
+
+###
+GET http://localhost:3001/api/diagnosis
+
+###
+GET thtp://localhost:3001/api/diagnosis/M24.2
+
+###
+POST http://localhost:3001/api/patients
+content-type: application/json
+
+{
+    "ssn": "my number",
+    "occupation": "bottle washer",
+    "dateOfBirth": "1992-01-11",
+    "gender": "male",
+    "name": "peter murphy"
+}
+
+
+
+###
+POST http://localhost:3001/api/patients/08e92ee4-375c-4113-adb7-7cfc8e8e07f5/entries
+content-type: application/json
+
+{
+    "description": "Health Check",
+    "type": "HealthCheck",
+    "date": "1998-01-01",
+    "specialist": "Ronald Doctor",
+    "healthCheckRating": 2
+}
+
+###
+POST http://localhost:3001/api/patients/08e92ee4-375c-4113-adb7-7cfc8e8e07f5/entries
+content-type: application/json
+
+{
+    "description": "OccupationalHealthcare-with date",
+    "type": "OccupationalHealthcare",
+    "employerName": "Feds",
+    "date": "1998-01-01",
+    "specialist": "Ronald Doctor",
+    "sickLeave": {
+        "startDate": "2001-01-01",
+        "endDate": "2001-01-11"
+    }
+}
+
+###
+POST http://localhost:3001/api/patients/08e92ee4-375c-4113-adb7-7cfc8e8e07f5/entries
+content-type: application/json
+
+{
+    "description": "OccupationalHealthcare-without date",
+    "type": "OccupationalHealthcare",
+    "employerName": "Feds",
+    "date": "1999-01-01",
+    "specialist": "Mr Doctor"
+}
+
+
+###
+POST http://localhost:3001/api/patients/08e92ee4-375c-4113-adb7-7cfc8e8e07f5/entries
+content-type: application/json
+
+{
+    "description": "Hospital",
+    "type": "Hospital",
+    "date": "2000-01-01",
+    "specialist": "Mr Doctor",
+    "discharge": {
+        "date": "2001-01-04",
+        "criteria": "Finger fixed"
+    }
+}
