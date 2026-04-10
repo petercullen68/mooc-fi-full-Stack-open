@@ -27,7 +27,7 @@ export const NewHospitalEntrySchema = NewBaseEntrySchema.extend({
   type: z.literal("Hospital"),
   discharge: z.object({
     date: z.iso.date(),
-    criteria: z.string(),
+    criteria: z.string().trim().min(1, "Criteria is required"),
   }),
 });
 
@@ -44,7 +44,7 @@ export const OccupationalHealthcareEntrySchema = BaseEntrySchema.extend({
 
 export const NewOccupationalHealthcareEntrySchema = NewBaseEntrySchema.extend({
   type: z.literal("OccupationalHealthcare"),
-  employerName: z.string(),
+  employerName: z.string().trim().min(1, "Employer name is required"),
   sickLeave: z
     .object({
       startDate: z.iso.date(),
@@ -76,9 +76,9 @@ export const NewEntrySchema = z.discriminatedUnion("type", [
 ]);
 
 export const NewPatientSchema = z.object({
-  name: z.string().min(1, "Name is required"),
-  ssn: z.string().min(1, "SSN is required"),
-  occupation: z.string().min(1, "Occupation is required"),
+  name: z.string().trim().min(1, "Name is required"),
+  ssn: z.string().trim().min(1, "SSN is required"),
+  occupation: z.string().trim().min(1, "Occupation is required"),
   dateOfBirth: z.iso.date(),
   gender: z.enum(Gender),
   entries: z.array(EntrySchema).optional(),
