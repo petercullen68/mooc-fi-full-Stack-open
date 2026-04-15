@@ -30,6 +30,7 @@ part0/   - Fundamentals of Web Apps
 part1/   - React Basics
 part2/   - Communicating with Server
 part3/   - Programming a Server with NodeJS and Express (Phonebook app)
+part4/   - Testing Express Servers, User Administration, Token Authentication
 part9/   - TypeScript
 ```
 
@@ -76,8 +77,8 @@ npm run dev
 
 ## 🎯 Status
 
-* Parts 0–3: ✅ Completed
-* Part 9 (TypeScript): 🔄 In progress
+* Parts 0–4: ✅ Completed
+* Part 9 (TypeScript): ✅ Completed
 
 ---
 
