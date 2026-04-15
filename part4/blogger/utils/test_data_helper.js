@@ -49,6 +49,26 @@ const initialBlogs = [
   }
 ]
 
+
+const initialUsers = [
+  {
+    username: 'michaelchan',
+    name: 'Michael Chan',
+    password: 'secret'
+  },
+  {
+    username: 'edsgerwdijkstra',
+    name: 'Edsger W. Dijkstra',
+    password: 'secret'
+  },
+  {
+    username: 'robertcmartin',
+    name: 'Robert C. Martin',
+    password: 'secret'
+  }
+];
+
+
 const fullNewBlog = {
   title: 'A new blog',
   author: 'Jenna the Author',
@@ -88,5 +108,6 @@ module.exports = {
   fullNewBlog,
   firstInitialBlog,
   initialBlogs,
-  updatesLikes
+  updatesLikes,
+  initialUsers
 }
