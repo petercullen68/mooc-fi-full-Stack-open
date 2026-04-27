@@ -13,7 +13,6 @@ test('dummy returns one', () => {
 describe('total likes', () => {
 
 
-
   test('of empty list is zero', () => {
     const result = listHelper.totalLikes([])
     assert.strictEqual(result, 0)
@@ -38,12 +37,12 @@ describe('favorite blogs', () => {
 
   test('when list has only one blog, id is equal to', () => {
     const result = listHelper.favoriteBlog(testDataHelper.firstInitialBlog())
-    assert.strictEqual(result._id,'5a422a851b54a676234d17f7')
+    assert.strictEqual(result._id, '5a422a851b54a676234d17f7')
   })
 
   test('of a bigger list id is returned correctly', () => {
     const result = listHelper.favoriteBlog(testDataHelper.initialBlogs)
-    assert.strictEqual(result._id,'5a422b3a1b54a676234d17f9')
+    assert.strictEqual(result._id, '5a422b3a1b54a676234d17f9')
   })
 })
 
@@ -55,14 +54,14 @@ describe('most blogs', () => {
 
   test('when list has only one blog, author is equal to', () => {
     const result = listHelper.mostBlogs(testDataHelper.firstInitialBlog())
-    assert.strictEqual(result.author,'Michael Chan')
-    assert.strictEqual(result.blogs,1)
+    assert.strictEqual(result.author, 'Michael Chan')
+    assert.strictEqual(result.blogs, 1)
   })
 
   test('of a bigger list id is returned correctly', () => {
     const result = listHelper.mostBlogs(testDataHelper.initialBlogs)
-    assert.strictEqual(result.author,'Robert C. Martin')
-    assert.strictEqual(result.blogs,3)
+    assert.strictEqual(result.author, 'Robert C. Martin')
+    assert.strictEqual(result.blogs, 3)
   })
 })
 
@@ -74,12 +73,13 @@ describe('most likes', () => {
 
   test('when list has only one blog, author and like are equal to', () => {
     const result = listHelper.mostLikes(testDataHelper.firstInitialBlog())
-    assert.strictEqual(result.author,'Michael Chan')
-    assert.strictEqual(result.likes,7)
+    assert.strictEqual(result.author, 'Michael Chan')
+    assert.strictEqual(result.likes, 7)
   })
 
   test('of a bigger list id is returned correctly', () => {
     const result = listHelper.mostLikes(testDataHelper.initialBlogs)
-    assert.strictEqual(result.author,'Edsger W. Dijkstra')
-    assert.strictEqual(result.likes,17)  })
+    assert.strictEqual(result.author, 'Edsger W. Dijkstra')
+    assert.strictEqual(result.likes, 17)
+  })
 })

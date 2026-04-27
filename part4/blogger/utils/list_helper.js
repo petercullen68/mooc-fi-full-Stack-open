@@ -5,14 +5,12 @@ const dummy = () => {
 }
 
 const totalLikes = array => {
-  const sum = function(items, prop){
-    return items.reduce( function(a, b) {
+  const sum = function (items, prop) {
+    return items.reduce(function (a, b) {
       return a + b[prop]
     }, 0)
   }
-  return array.length === 0
-    ? 0
-    : sum(array, 'likes')
+  return array.length === 0 ? 0 : sum(array, 'likes')
 }
 
 const favoriteBlog = array => {
@@ -21,35 +19,27 @@ const favoriteBlog = array => {
       return item[prop] > max[prop] ? item : max
     }, items[0])
   }
-  return array.length === 0
-    ? null
-    : maxBy(array, 'likes')
+  return array.length === 0 ? null : maxBy(array, 'likes')
 }
 
 const mostBlogs = array => {
   const grouped = lodash.groupBy(array, 'author')
 
   const result = lodash.map(grouped, (items, author) => ({
-    author,
-    blogs: items.length,
+    author, blogs: items.length,
   }))
 
-  return array.length === 0
-    ? null
-    : lodash.maxBy(result, 'blogs')
+  return array.length === 0 ? null : lodash.maxBy(result, 'blogs')
 }
 
 const mostLikes = array => {
   const grouped = lodash.groupBy(array, 'author')
 
-  const result = lodash.map(grouped,(items, author) => ({
-    author,
-    likes: lodash.sumBy(items, 'likes'),
+  const result = lodash.map(grouped, (items, author) => ({
+    author, likes: lodash.sumBy(items, 'likes'),
   }))
 
-  return array.length === 0
-    ? null
-    : lodash.maxBy(result, 'likes')
+  return array.length === 0 ? null : lodash.maxBy(result, 'likes')
 }
 
 

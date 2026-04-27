@@ -10,7 +10,6 @@ const testDataHelper = require('../utils/test_data_helper')
 const api = supertest(app)
 
 
-
 describe('miscellaneous api blogs test', () => {
   beforeEach(async () => {
     await Blog.deleteMany({})
@@ -19,9 +18,7 @@ describe('miscellaneous api blogs test', () => {
 
   test('blogs are returned as json', async () => {
     const newUser = {
-      username: 'mluukkai',
-      name: 'Matti Luukkainen',
-      password: 'salainen'
+      username: 'mluukkai', name: 'Matti Luukkainen', password: 'salainen'
     }
 
     await api
@@ -31,8 +28,7 @@ describe('miscellaneous api blogs test', () => {
       .expect('Content-Type', /application\/json/)
 
     const loginRequest = {
-      username: 'mluukkai',
-      password: 'salainen'
+      username: 'mluukkai', password: 'salainen'
     }
 
     const login = await api
@@ -42,22 +38,20 @@ describe('miscellaneous api blogs test', () => {
 
     await api
       .post('/api/blogs')
-      .set('Authorization' ,`Bearer ${login.body.token}`)
+      .set('Authorization', `Bearer ${login.body.token}`)
       .send(testDataHelper.fullNewBlog)
       .expect(201)
 
     await api
       .get('/api/blogs')
-      .set('Authorization' ,`Bearer ${login.body.token}`)
+      .set('Authorization', `Bearer ${login.body.token}`)
       .expect(200)
       .expect('Content-Type', /application\/json/)
   })
 
   test('number of blogs returned is correct', async () => {
     const newUser = {
-      username: 'mluukkai',
-      name: 'Matti Luukkainen',
-      password: 'salainen'
+      username: 'mluukkai', name: 'Matti Luukkainen', password: 'salainen'
     }
 
     await api
@@ -67,8 +61,7 @@ describe('miscellaneous api blogs test', () => {
       .expect('Content-Type', /application\/json/)
 
     const loginRequest = {
-      username: 'mluukkai',
-      password: 'salainen'
+      username: 'mluukkai', password: 'salainen'
     }
 
     const login = await api
@@ -78,13 +71,13 @@ describe('miscellaneous api blogs test', () => {
 
     await api
       .post('/api/blogs')
-      .set('Authorization' ,`Bearer ${login.body.token}`)
+      .set('Authorization', `Bearer ${login.body.token}`)
       .send(testDataHelper.fullNewBlog)
       .expect(201)
 
     await api
       .get('/api/blogs')
-      .set('Authorization' ,`Bearer ${login.body.token}`)
+      .set('Authorization', `Bearer ${login.body.token}`)
       .expect(200)
       .expect('Content-Type', /application\/json/)
 
@@ -97,9 +90,7 @@ describe('miscellaneous api blogs test', () => {
 
   test('blog contains id not _id in the body', async () => {
     const newUser = {
-      username: 'mluukkai',
-      name: 'Matti Luukkainen',
-      password: 'salainen'
+      username: 'mluukkai', name: 'Matti Luukkainen', password: 'salainen'
     }
 
     await api
@@ -109,8 +100,7 @@ describe('miscellaneous api blogs test', () => {
       .expect('Content-Type', /application\/json/)
 
     const loginRequest = {
-      username: 'mluukkai',
-      password: 'salainen'
+      username: 'mluukkai', password: 'salainen'
     }
 
     const login = await api
@@ -120,13 +110,13 @@ describe('miscellaneous api blogs test', () => {
 
     await api
       .post('/api/blogs')
-      .set('Authorization' ,`Bearer ${login.body.token}`)
+      .set('Authorization', `Bearer ${login.body.token}`)
       .send(testDataHelper.fullNewBlog)
       .expect(201)
 
     await api
       .get('/api/blogs')
-      .set('Authorization' ,`Bearer ${login.body.token}`)
+      .set('Authorization', `Bearer ${login.body.token}`)
       .expect(200)
       .expect('Content-Type', /application\/json/)
 
@@ -147,9 +137,7 @@ describe('update a blog test', () => {
 
   test('add a new blog and verify that is exists', async () => {
     const newUser = {
-      username: 'mluukkai',
-      name: 'Matti Luukkainen',
-      password: 'salainen'
+      username: 'mluukkai', name: 'Matti Luukkainen', password: 'salainen'
     }
 
     await api
@@ -159,8 +147,7 @@ describe('update a blog test', () => {
       .expect('Content-Type', /application\/json/)
 
     const loginRequest = {
-      username: 'mluukkai',
-      password: 'salainen'
+      username: 'mluukkai', password: 'salainen'
     }
 
     const login = await api
@@ -170,13 +157,13 @@ describe('update a blog test', () => {
 
     const addedBlog = await api
       .post('/api/blogs')
-      .set('Authorization' ,`Bearer ${login.body.token}`)
+      .set('Authorization', `Bearer ${login.body.token}`)
       .send(testDataHelper.fullNewBlog)
       .expect(201)
 
     await api
       .get('/api/blogs')
-      .set('Authorization' ,`Bearer ${login.body.token}`)
+      .set('Authorization', `Bearer ${login.body.token}`)
       .expect(200)
       .expect('Content-Type', /application\/json/)
 
@@ -197,9 +184,7 @@ describe('add a blog test', () => {
 
   test('add a new blog, with a valid token', async () => {
     const newUser = {
-      username: 'mluukkai',
-      name: 'Matti Luukkainen',
-      password: 'salainen'
+      username: 'mluukkai', name: 'Matti Luukkainen', password: 'salainen'
     }
 
     await api
@@ -209,8 +194,7 @@ describe('add a blog test', () => {
       .expect('Content-Type', /application\/json/)
 
     const loginRequest = {
-      username: 'mluukkai',
-      password: 'salainen'
+      username: 'mluukkai', password: 'salainen'
     }
 
     const login = await api
@@ -220,16 +204,14 @@ describe('add a blog test', () => {
 
     await api
       .post('/api/blogs')
-      .set('Authorization' ,`Bearer ${login.body.token}`)
+      .set('Authorization', `Bearer ${login.body.token}`)
       .send(testDataHelper.fullNewBlog)
       .expect(201)
   })
 
   test('add a new blog, with a valid token, verify likes is 0 if missing', async () => {
     const newUser = {
-      username: 'mluukkai',
-      name: 'Matti Luukkainen',
-      password: 'salainen'
+      username: 'mluukkai', name: 'Matti Luukkainen', password: 'salainen'
     }
 
     await api
@@ -239,8 +221,7 @@ describe('add a blog test', () => {
       .expect('Content-Type', /application\/json/)
 
     const loginRequest = {
-      username: 'mluukkai',
-      password: 'salainen'
+      username: 'mluukkai', password: 'salainen'
     }
 
     const login = await api
@@ -250,7 +231,7 @@ describe('add a blog test', () => {
 
     const addedBlog = await api
       .post('/api/blogs')
-      .set('Authorization' ,`Bearer ${login.body.token}`)
+      .set('Authorization', `Bearer ${login.body.token}`)
       .send(testDataHelper.newBlogWithoutLikes)
       .expect(201)
 
@@ -266,9 +247,7 @@ describe('add a blog test', () => {
 
   test('add a new blog without a url and verify a 400', async () => {
     const newUser = {
-      username: 'mluukkai',
-      name: 'Matti Luukkainen',
-      password: 'salainen'
+      username: 'mluukkai', name: 'Matti Luukkainen', password: 'salainen'
     }
 
     await api
@@ -278,8 +257,7 @@ describe('add a blog test', () => {
       .expect('Content-Type', /application\/json/)
 
     const loginRequest = {
-      username: 'mluukkai',
-      password: 'salainen'
+      username: 'mluukkai', password: 'salainen'
     }
 
     const login = await api
@@ -289,16 +267,14 @@ describe('add a blog test', () => {
 
     await api
       .post('/api/blogs')
-      .set('Authorization' ,`Bearer ${login.body.token}`)
+      .set('Authorization', `Bearer ${login.body.token}`)
       .send(testDataHelper.newBlogWithoutUrl)
       .expect(400)
   })
 
   test('add a new blog without a url and verify a 400', async () => {
     const newUser = {
-      username: 'mluukkai',
-      name: 'Matti Luukkainen',
-      password: 'salainen'
+      username: 'mluukkai', name: 'Matti Luukkainen', password: 'salainen'
     }
 
     await api
@@ -308,8 +284,7 @@ describe('add a blog test', () => {
       .expect('Content-Type', /application\/json/)
 
     const loginRequest = {
-      username: 'mluukkai',
-      password: 'salainen'
+      username: 'mluukkai', password: 'salainen'
     }
 
     const login = await api
@@ -319,7 +294,7 @@ describe('add a blog test', () => {
 
     await api
       .post('/api/blogs')
-      .set('Authorization' ,`Bearer ${login.body.token}`)
+      .set('Authorization', `Bearer ${login.body.token}`)
       .send(testDataHelper.newBlogWithoutTitle)
       .expect(400)
   })
@@ -334,9 +309,7 @@ describe('delete a blog test', () => {
 
   test('add a new blog, delete, same user', async () => {
     const newUser = {
-      username: 'mluukkai',
-      name: 'Matti Luukkainen',
-      password: 'salainen'
+      username: 'mluukkai', name: 'Matti Luukkainen', password: 'salainen'
     }
 
     await api
@@ -346,8 +319,7 @@ describe('delete a blog test', () => {
       .expect('Content-Type', /application\/json/)
 
     const loginRequest = {
-      username: 'mluukkai',
-      password: 'salainen'
+      username: 'mluukkai', password: 'salainen'
     }
 
     const login = await api
@@ -357,22 +329,20 @@ describe('delete a blog test', () => {
 
     const addedBlog = await api
       .post('/api/blogs')
-      .set('Authorization' ,`Bearer ${login.body.token}`)
+      .set('Authorization', `Bearer ${login.body.token}`)
       .send(testDataHelper.fullNewBlog)
       .expect(201)
 
     await api
       .delete('/api/blogs/' + addedBlog.body.id)
-      .set('Authorization' ,`Bearer ${login.body.token}`)
+      .set('Authorization', `Bearer ${login.body.token}`)
       .expect(204)
 
   })
 
   test('add a new blog, delete, no token', async () => {
     const newUser = {
-      username: 'mluukkai',
-      name: 'Matti Luukkainen',
-      password: 'salainen'
+      username: 'mluukkai', name: 'Matti Luukkainen', password: 'salainen'
     }
 
     await api
@@ -382,8 +352,7 @@ describe('delete a blog test', () => {
       .expect('Content-Type', /application\/json/)
 
     const loginRequest = {
-      username: 'mluukkai',
-      password: 'salainen'
+      username: 'mluukkai', password: 'salainen'
     }
 
     const login = await api
@@ -393,7 +362,7 @@ describe('delete a blog test', () => {
 
     const addedBlog = await api
       .post('/api/blogs')
-      .set('Authorization' ,`Bearer ${login.body.token}`)
+      .set('Authorization', `Bearer ${login.body.token}`)
       .send(testDataHelper.fullNewBlog)
       .expect(201)
 
@@ -404,9 +373,7 @@ describe('delete a blog test', () => {
 
   test('add a new blog, delete, different user', async () => {
     let newUser = {
-      username: 'mluukkai',
-      name: 'Matti Luukkainen',
-      password: 'salainen'
+      username: 'mluukkai', name: 'Matti Luukkainen', password: 'salainen'
     }
 
     await api
@@ -416,8 +383,7 @@ describe('delete a blog test', () => {
       .expect('Content-Type', /application\/json/)
 
     let loginRequest = {
-      username: 'mluukkai',
-      password: 'salainen'
+      username: 'mluukkai', password: 'salainen'
     }
 
     let login = await api
@@ -427,14 +393,12 @@ describe('delete a blog test', () => {
 
     const addedBlog = await api
       .post('/api/blogs')
-      .set('Authorization' ,`Bearer ${login.body.token}`)
+      .set('Authorization', `Bearer ${login.body.token}`)
       .send(testDataHelper.fullNewBlog)
       .expect(201)
 
     newUser = {
-      username: 'peter',
-      name: 'pedro',
-      password: 'pedrospassword'
+      username: 'peter', name: 'pedro', password: 'pedrospassword'
     }
 
     await api
@@ -444,8 +408,7 @@ describe('delete a blog test', () => {
       .expect('Content-Type', /application\/json/)
 
     loginRequest = {
-      username: 'peter',
-      password: 'pedrospassword'
+      username: 'peter', password: 'pedrospassword'
     }
 
     login = await api
@@ -455,7 +418,7 @@ describe('delete a blog test', () => {
 
     await api
       .delete('/api/blogs/' + addedBlog.body.id)
-      .set('Authorization' ,`Bearer ${login.body.token}`)
+      .set('Authorization', `Bearer ${login.body.token}`)
       .expect(401)
 
   })

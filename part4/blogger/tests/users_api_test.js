@@ -12,9 +12,7 @@ const api = supertest(app)
 describe('user and password length checks', () => {
   test('creation failed with a username that is only 2 chars', async () => {
     const newUser = {
-      username: '12',
-      name: '12',
-      password: 'salainen',
+      username: '12', name: '12', password: 'salainen',
     }
 
     await api
@@ -26,9 +24,7 @@ describe('user and password length checks', () => {
 
   test('creation failed with a password that is only 2 chars', async () => {
     const newUser = {
-      username: '1245',
-      name: '12',
-      password: '11',
+      username: '1245', name: '12', password: '11',
     }
 
     await api
@@ -52,9 +48,7 @@ describe('when there is initially one user in db', () => {
 
   test('creation succeeds with a fresh username with login', async () => {
     const newUser = {
-      username: 'mluukkai',
-      name: 'Matti Luukkainen',
-      password: 'salainen',
+      username: 'mluukkai', name: 'Matti Luukkainen', password: 'salainen',
     }
 
     await api
@@ -64,8 +58,7 @@ describe('when there is initially one user in db', () => {
       .expect('Content-Type', /application\/json/)
 
     const loginRequest = {
-      username: 'mluukkai',
-      password: 'salainen'
+      username: 'mluukkai', password: 'salainen'
     }
 
     await api
@@ -78,9 +71,7 @@ describe('when there is initially one user in db', () => {
     const usersAtStart = await helper.usersInDb()
 
     const newUser = {
-      username: 'root',
-      name: 'Superuser',
-      password: 'salainen',
+      username: 'root', name: 'Superuser', password: 'salainen',
     }
 
     const result = await api

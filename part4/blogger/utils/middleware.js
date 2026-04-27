@@ -11,7 +11,6 @@ const requestLogger = (request, response, next) => {
 }
 
 
-
 const tokenExtractor = (request, response, next) => {
   // code that extracts the token
   const authorization = request.get('authorization')
@@ -75,9 +74,5 @@ const errorHandler = (error, request, response, next) => {
   next(error)
 }
 module.exports = {
-  requestLogger,
-  unknownEndpoint,
-  errorHandler,
-  tokenExtractor,
-  userExtractor
+  requestLogger, unknownEndpoint, errorHandler, tokenExtractor, userExtractor
 }

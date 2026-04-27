@@ -78,6 +78,7 @@ npm run dev
 ## 🎯 Status
 
 * Parts 0–4: ✅ Completed
+* Part 5 In progress
 * Part 9 (TypeScript): ✅ Completed
 
 ---
