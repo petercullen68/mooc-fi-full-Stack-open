@@ -1,0 +1,25 @@
+    <Login
+      visible={user === null}
+      handleLogin={handleLogin}
+      notification={notification}/>
+    <LoggedIn
+      visible={user !== null}
+      notification={notification}
+      user={user}
+      handleLogout={handleLogout}
+      setShowCreateNewBlog={setShowCreateNewBlog}
+      showCreateNewBlog={showCreateNewBlog}/>
+    <CreateBlog
+      visible={user !== null && showCreateNewBlog}
+      handleCreate={handleCreate}
+      setShowCreateNewBlog={setShowCreateNewBlog}/>
+    <Blogs
+      visible={true}
+      blogs={blogs}
+      user={user}
+      handleRemoveBlog={handleRemoveBlog}
+      handleUpdateLikes={handleUpdateLikes}/>
+  </div>)
+
+
+
