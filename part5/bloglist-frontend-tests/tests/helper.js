@@ -2,8 +2,8 @@ import {expect} from "@playwright/test";
 
 const loginWith = async (page, username, password)  => {
   await page.getByTestId("link-login").click()
-  await page.getByLabel('username').fill(username)
-  await page.getByLabel('password').fill(password)
+  await page.getByLabel('Username').fill(username)
+  await page.getByLabel('Password').fill(password)
   await page.getByTestId("login-button").click()
 }
 
@@ -19,10 +19,16 @@ const createUser = async (request, username, password, name) => {
 
 const createBlog = async (page, title, author, url) => {
   await page.getByTestId("link-create-blog").click()
-  await page.getByTestId("title-input").fill(title)
-  await page.getByTestId("author-input").fill(author)
-  await page.getByTestId("url-input").fill(url)
+  await page.getByLabel("Title").fill(title)
+  await page.getByLabel("Author").fill(author)
+  await page.getByLabel("Url").fill(url)
   await page.getByTestId("submit-create-blog-button").click()
+  await page.pause()
+
+  await expect(
+    page.getByTestId("blog-link").filter({ hasText: title })
+  ).toBeVisible()
+
   await expect(page.getByTestId("blog-link")).not.toHaveCount(0)
 
 }

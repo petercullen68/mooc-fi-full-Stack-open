@@ -1,14 +1,11 @@
 import { useNavigate, useParams } from 'react-router-dom'
+import { Box, Button, Card, CardContent, Typography } from '@mui/material'
 
 const BlogView = ({ blogs, handleUpdateLikes, user, handleRemoveBlog }) => {
   const navigate = useNavigate()
   const { id } = useParams()
   const blog = blogs.find(b => b.id === id)
   if (!blog) return null
-
-  const blogStyle = {
-    paddingTop: 10, paddingLeft: 2, border: 'solid', borderWidth: 1, marginBottom: 5
-  }
 
   const removeBlog = async (id) => {
     const isRemoved = await handleRemoveBlog(id)
@@ -17,31 +14,58 @@ const BlogView = ({ blogs, handleUpdateLikes, user, handleRemoveBlog }) => {
     }
   }
 
-  return (<div style={blogStyle} data-testid="blog">
-    <h3>{blog.title} by {blog.author}</h3>
-    <div>
-      <div>
+  return (<Card sx={{ maxWidth: 500, mt: 2 }} data-testid="blog">
+    <CardContent>
+
+      <Typography variant="h6">
+        {blog.title}
+      </Typography>
+
+      <Typography variant="body2" color="text.secondary" gutterBottom>
+        by {blog.author}
+      </Typography>
+
+      <Box sx={{ mb: 1 }}>
         <a href={blog.url} target="_blank" rel="noopener noreferrer">
           {blog.url}
         </a>
-      </div><div>
-        {blog.likes} likes
+      </Box>
+
+      <Typography sx={{ mb: 1 }}>
+        Added by {blog.user.name}
+      </Typography>
+
+      <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+        <Typography>{blog.likes} likes</Typography>
+
         {user && (
-          <button
+          <Button
+            variant="outlined"
+            size="small"
             data-testid="like-button"
             onClick={() =>
               handleUpdateLikes(blog.id, blog.likes + 1, blog.title, blog.author, blog.url)
             }
           >
-          like
-          </button>
+            LIKE
+          </Button>
         )}
-      </div>
-      <div>Added by {blog.user.name}</div>
-      {(blog.user.id === user?.id) &&
-        <button data-testid="remove-button" onClick={() => removeBlog(blog.id)}>remove</button>}
-    </div>
-  </div>)
+
+        {(blog.user.id === user?.id) && (
+          <Button
+            variant="outlined"
+            color="error"
+            size="small"
+            data-testid="remove-button"
+            onClick={() => removeBlog(blog.id)}
+          >
+            REMOVE
+          </Button>
+        )}
+      </Box>
+
+    </CardContent>
+  </Card>)
 }
 
 export default BlogView

@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { Button, TextField } from '@mui/material'
 
 const Login = ({ handleLogin }) => {
   const [username, setUsername] = useState('')
@@ -16,32 +17,28 @@ const Login = ({ handleLogin }) => {
     }
   }
 
-  return (<form onSubmit={doLogin}>
-    <h2>log in to application</h2>
+  return (
     <div>
-      <label>
-          username
-        <input
-          data-testid="username-input"
-          type="text"
-          value={username}
-          onChange={({ target }) => setUsername(target.value)}
-        />
-      </label>
-    </div>
-    <div>
-      <label>
-          password
-        <input
-          data-testid="password-input"
-          type="password"
-          value={password}
-          onChange={({ target }) => setPassword(target.value)}
-        />
-      </label>
-    </div>
-    <button type="submit" data-testid = "login-button" >login</button>
-  </form>)
+      <h2>Log in to application</h2>
+      <form onSubmit={doLogin}>
+        <div>
+          <TextField
+            data-testid="username-input"
+            label = "Username"
+            value={username}
+            onChange={({ target }) => setUsername(target.value)} />
+        </div>
+        <div>
+          <TextField
+            data-testid="password-input"
+            label = "Password"
+            type="password"
+            value={password}
+            onChange={({ target }) => setPassword(target.value)} />
+        </div>
+        <Button type="submit" data-testid = "login-button" variant="contained" style={{ marginTop: 10 }}>Login</Button>
+      </form>
+    </div>)
 }
 
 export default Login

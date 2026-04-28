@@ -7,13 +7,13 @@ import Login from './components/Login.jsx'
 import { BrowserRouter as Router, Link, Route, Routes } from 'react-router-dom'
 import Notification from './components/Notification.jsx'
 import BlogView from './components/BlogView.jsx'
-import CreateBlog from "./components/CreateBlog.jsx";
+import CreateBlog from './components/CreateBlog.jsx'
+import { AppBar, Button, Container, Toolbar, Typography } from '@mui/material'
 
 const App = () => {
   const [blogs, setBlogs] = useState([])
   const [user, setUser] = useState(null)
   const [notification, setNotification] = useState(null)
-  const [showCreateNewBlog, setShowCreateNewBlog] = useState(false)
 
 
   const displayNotification = (message, type) => {
@@ -60,7 +60,6 @@ const App = () => {
       const addedBlog = await blogService.create(newBlog)
       displayNotification(`a new blog ${addedBlog.title} by ${addedBlog.author} added`, 'success')
       setBlogs(blogs.concat(addedBlog))
-      setShowCreateNewBlog(false)
       return true
     } catch (error) {
       if (axios.isAxiosError(error)) {
@@ -113,31 +112,35 @@ const App = () => {
     setUser(null)
   }
 
-  const padding = {
-    padding: 5
-  }
-
-  return (<Router>
-    <div>
-      <Notification notification={notification}/>
-      <Link data-testid="link-blogs" style={padding} to="/">blogs</Link>
-      {user !== null && (<Link data-testid="link-create-blog" style={padding} to="/newblog">new blog</Link>)}
-      {user === null ? (<Link data-testid="link-login" style={padding} to="/login">login</Link>) : (
-        <button data-testid="logout-button" style={padding} onClick={handleLogout}>
-          logout
-        </button>)}
-    </div>
-    <Routes>
-      <Route path="/login" element={<Login
-        handleLogin={handleLogin}/>}/>
-      <Route path="/" element={<Blogs
-        blogs={blogs}/>}/>
-      <Route path="/blogs/:id"
-        element={<BlogView blogs={blogs} handleUpdateLikes={handleUpdateLikes} user={user} handleRemoveBlog={handleRemoveBlog}/>}/>
-      <Route path="/newblog"
-        element={<CreateBlog handleCreate={handleCreate}/>}/>
-    </Routes>
-  </Router>)
+  return (
+    <Container>
+      <Router>
+        <div>
+          <AppBar position="static">
+            <Toolbar>
+              <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+                BLOG APP
+              </Typography>
+              <Button data-testid="link-blogs" color="inherit" component={Link} to="/">BLOGS</Button>
+              {user !== null && (<Button data-testid="link-create-blog" color="inherit" component={Link} to="/newblog">NEW BLOG</Button>)}
+              {user === null ? (<Button data-testid="link-login" color="inherit" component={Link} to="/login">LOGIN</Button>) :
+                (<Button data-testid="logout-button" color="inherit" onClick={handleLogout}>LOGOUT</Button>)}
+            </Toolbar>
+          </AppBar>
+          <Notification notification={notification}/>
+        </div>
+        <Routes>
+          <Route path="/login" element={<Login
+            handleLogin={handleLogin}/>}/>
+          <Route path="/" element={<Blogs
+            blogs={blogs}/>}/>
+          <Route path="/blogs/:id"
+            element={<BlogView blogs={blogs} handleUpdateLikes={handleUpdateLikes} user={user} handleRemoveBlog={handleRemoveBlog}/>}/>
+          <Route path="/newblog"
+            element={<CreateBlog handleCreate={handleCreate}/>}/>
+        </Routes>
+      </Router>
+    </Container>)
 }
 
 export default App

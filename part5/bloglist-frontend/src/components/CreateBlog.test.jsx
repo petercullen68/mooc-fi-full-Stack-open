@@ -12,7 +12,7 @@ test('test 1 - Ensure the create button is handled correctly', async () => {
     </MemoryRouter>
   )
   const user = userEvent.setup()
-  const titleText = screen.getByTestId('title-input')
+  const titleText = screen.getByLabelText('Title')
   const createButton = screen.getByTestId('submit-create-blog-button')
   await user.type(titleText, 'testing a form...')
   await user.click(createButton)

@@ -8,8 +8,8 @@ const Blogs = ({ blogs }) => {
 
   return (
     <div>
-      <h1>blogs</h1>
-      <ul className="blog-list">
+      <h2>Blogs</h2>
+      <ul>
         {sortedBlogs.map(blog => (
           <li key={blog.id}>
             <Link data-testid="blog-link" to={`/blogs/${blog.id}`}>

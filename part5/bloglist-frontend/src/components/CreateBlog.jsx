@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { Button, TextField } from '@mui/material'
 
 const CreateBlog = ({ handleCreate }) => {
   const navigate = useNavigate()
@@ -26,39 +27,36 @@ const CreateBlog = ({ handleCreate }) => {
 
   return (<div>
     <form onSubmit={createBlog}>
-      <h2>create new</h2>
+      <h2>Create a new blog</h2>
       <div>
-        <label>
-            title:
-          <input data-testid="title-input"
-            type="text"
-            value={title}
-            onChange={({ target }) => setTitle(target.value)}
-          />
-        </label>
+        <TextField
+          data-testid="title-input"
+          sx={{ width: 450 }}
+          label = "Title"
+          type="text"
+          value={title}
+          onChange={({ target }) => setTitle(target.value)} />
       </div>
       <div>
-        <label>
-            author:
-          <input data-testid="author-input"
-            type="text"
-            value={author}
-            onChange={({ target }) => setAuthor(target.value)}
-          />
-        </label>
+        <TextField
+          data-testid="author-input"
+          sx={{ width: 450 }}
+          label = "Author"
+          type="text"
+          value={author}
+          onChange={({ target }) => setAuthor(target.value)} />
       </div>
       <div>
-        <label>
-            url:
-          <input data-testid="url-input"
-            type="text"
-            value={url}
-            onChange={({ target }) => setUrl(target.value)}
-          />
-        </label>
+        <TextField
+          sx={{ width: 450 }}
+          data-testid="url-input"
+          label = "Url"
+          type="text"
+          value={url}
+          onChange={({ target }) => setUrl(target.value)} />
       </div>
-      <button type="submit" data-testid="submit-create-blog-button" > create</button>
-      <button type="button" onClick={() => handleCancel()}> cancel</button>
+      <Button type="submit" data-testid="submit-create-blog-button" variant="contained" style={{ marginTop: 10 }}>Create</Button>
+      <Button type="button" onClick={() => handleCancel()} variant="contained" style={{ marginTop: 10, marginLeft:10 }}>Cancel</Button>
     </form>
   </div>)
 }

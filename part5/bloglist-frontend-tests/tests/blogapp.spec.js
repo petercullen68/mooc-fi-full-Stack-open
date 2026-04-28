@@ -95,11 +95,15 @@ describe('When logged in', () => {
     const blog3 = await page.getByTestId('blog-link').filter({ hasText: 'Third Blog Title' })
 
     await blog1.click()
+    await expect(page.getByTestId('blog')).toBeVisible()
+
     await page.getByTestId("like-button").click()
     await expect(page.getByText("1 likes")).toBeVisible()
     await page.getByTestId("link-blogs").click()
 
     await blog2.click()
+    await expect(page.getByTestId('blog')).toBeVisible()
+
     await page.getByTestId("like-button").click()
     await expect(page.getByText("1 likes")).toBeVisible()
     await page.getByTestId("like-button").click()
