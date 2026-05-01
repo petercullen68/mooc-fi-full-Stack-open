@@ -10,76 +10,31 @@ https://mooc-fi-full-stack-open.onrender.com
 
 ---
 
-## 📚 Course Overview
-
-The course covers modern web development with a focus on:
-
-* React (frontend)
-* Node.js & Express (backend)
-* REST APIs
-* MongoDB
-* TypeScript
-* Testing and deployment
-
----
-
 ## 📂 Repository Structure
 
 ```
-part0/   - Fundamentals of Web Apps
-part1/   - React Basics
-part2/   - Communicating with Server
-part3/   - Programming a Server with NodeJS and Express (Phonebook app)
-part4/   - Testing Express Servers, User Administration, Token Authentication
-part9/   - TypeScript
+part0/                      - Fundamentals of Web Apps
+part1/                      - Introduction to React
+part2/                      - Communicating with Server
+part3/                      - Programming a server with NodeJS and Express
+part4/                      - Testing Express servers, user administration
+part5/                      - Testing React apps, React Router
+part9/                      - TypeScript
+mooc-full-stack-containers/ - Dockerized versions of projects (Full Stack Containers final exercises)
 ```
-
----
-
-## 🛠️ Technologies Used
-
-* React
-* Node.js
-* Express
-* MongoDB (Mongoose)
-* TypeScript
-* Axios
-* ESLint
-
----
-
-## ⚙️ Running Locally
-
-Clone the repo:
-
-```
-git clone https://github.com/<your-username>/mooc-fi-full-stack-open.git
-cd mooc-fi-full-stack-open
-```
-
-Navigate to a specific part:
-
-```
-cd part3/phonebook
-npm install
-npm run dev
-```
-
----
-
-## ✍️ Notes
-
-* Exercises are submitted according to course requirements (structured per part).
-* Some projects are deployed (see live link above).
-* Code prioritizes clarity, correctness, and incremental improvement.
-
----
 
 ## 🎯 Status
 
-* Parts 0–4: ✅ Completed
-* Part 5 In progress
+* Part 0 Fundamentals of Web Apps ✅ Completed
+* Part 1 Introduction to React ✅ Completed
+* Part 2 Communicating with Server ✅ Completed
+* Part 3 Programming a server with NodeJS and Express ✅ Completed
+* Part 4 Testing Express servers, user administration ✅ Completed
+* Part 5 Testing React apps, React Router ✅ Completed
+* Part 6 Advanced state management - In progress
 * Part 9 (TypeScript): ✅ Completed
+* Part 11 (CI/CD): ✅ Completed (https://github.com/petercullen68/full-stack-open-continuous-integration)
+* Part 12 (Containers): ✅ Completed (https://github.com/petercullen68/full-stack-open-containers)
 
 ---
 
