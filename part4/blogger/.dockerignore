@@ -1,0 +1,12 @@
+.dockerignore
+.gitignore
+node_modules
+Dockerfile
+dev.Dockerfile
+docker-compose.dev.yml
+docker-compose.yml
+.idea
+README.md
+test_backend.http
+# mongoDB and redis data directory
+mongo_data

@@ -1,0 +1,45 @@
+services:
+  app:
+    image: blogger-frontend-dev
+    container_name: blogger-frontend-dev
+    build:
+      context: ../part5/bloglist-frontend/
+      dockerfile: dev.Dockerfile
+    volumes:
+      - ../part5/bloglist-frontend:/usr/src/app
+    environment:
+        - VITE_BACKEND_URL=/
+
+  nginx:
+    image: nginx:1.29
+    volumes:
+      - ./nginx.dev.conf:/etc/nginx/nginx.conf:ro
+    ports:
+      - "8080:80"
+    container_name: reverse-proxy
+    depends_on:
+      - backend
+      - app
+
+  mongo:
+    container_name: mongo_fullstack
+    image: mongo
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: example
+      MONGO_INITDB_DATABASE: the_database
+    volumes:
+      - ../part4/blogger/mongo/mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js
+      - ../part4/blogger/mongo_data:/data/db
+
+  backend:
+    container_name: blogger-backend-dev
+    image: blogger-backend-dev
+    build:
+      context: ../part4/blogger/
+      dockerfile: dev.Dockerfile
+    volumes:
+      - ../part4/blogger:/usr/src/app
+    environment:
+      - MONGODB_URI=mongodb://the_username:the_password@mongo:27017/the_database
+      - PORT=3000
