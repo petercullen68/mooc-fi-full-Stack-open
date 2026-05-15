@@ -1,38 +1,35 @@
 
 import { create } from 'zustand'
+import anecdotesService from "./services/anecdotes.js";
 
-const anecdotesAtStart = [
-  'If it hurts, do it more often',
-  'Adding manpower to a late software project makes it later!',
-  'The first 90 percent of the code accounts for the first 90 percent of the development time...The remaining 10 percent of the code accounts for the other 90 percent of the development time.',
-  'Any fool can write code that a computer can understand. Good programmers write code that humans can understand.',
-  'Premature optimization is the root of all evil.',
-  'Debugging is twice as hard as writing the code in the first place. Therefore, if you write the code as cleverly as possible, you are, by definition, not smart enough to debug it.'
-]
-
-const getId = () => (100000 * Math.random()).toFixed(0)
-
-const asObject = anecdote => ({
-  content: anecdote,
-  id: getId(),
-  votes: 0
-})
-
-const useAnecdoteStore = create((set) => ({
-  anecdotes: anecdotesAtStart.map(asObject),
+const useAnecdoteStore = create((set, get) => ({
+  anecdotes: [],
   filter: '',
   actions: {
+    add: async (content) => {
+      const newAnecdote = await anecdotesService.createNew(content)
+      set(state => ({ anecdotes: state.anecdotes.concat(newAnecdote) }))
+    },
+    remove: async (id) => {
+      await anecdotesService.remove(id)
+      set(state => ({
+        anecdotes: state.anecdotes.filter(a => a.id !== id)
+      }))
+    },
+    initialize: async () => {
+      const anecdotes = await anecdotesService.getAll()
+      set(() => ({anecdotes}))
+    },
+    vote: async (id) => {
+      const anecdote = get().anecdotes.find(n => n.id === id)
+      const updated = await anecdotesService.update(
+        id, { ...anecdote, votes: anecdote.votes + 1 }
+      )
+      set(state => ({
+        anecdotes: state.anecdotes.map(n => n.id === id ? updated : n)
+      }))
+    },
     setFilter: value => set(() => ({ filter: value })),
-    vote: id => set(
-      state => ({
-        anecdotes: state.anecdotes.map(anecdote =>
-          anecdote.id === id ? { ...anecdote, votes: anecdote.votes + 1 } : anecdote
-        )
-      })
-    ),
-    add: anecdote => set(
-      state => ({ anecdotes: state.anecdotes.concat(anecdote) })
-    ),
   },
 }))
 
@@ -41,5 +38,22 @@ export const useAnecdoteActions = () => useAnecdoteStore((state) => state.action
 export const useAnecdotes = () => {
   const anecdotes = useAnecdoteStore((state) => state.anecdotes)
   const filter = useAnecdoteStore((state) => state.filter)
-  return anecdotes.filter(n => n.content.toLowerCase().includes(filter.toLowerCase()))
+  return anecdotes.filter(n => n.content.includes(filter))
 }
+
+export const useNotificationStore = create((set) => ({
+  notification: null, // { message, type }
+
+  actions: {
+    show: (message, type = 'success') => {
+      set({ notification: { message, type } })
+      setTimeout(() => {
+        set({ notification: null })
+      }, 5000)
+    },
+    clear: () =>
+      set({ notification: null }),
+  }
+}))
+export const useNotification = () => useNotificationStore((state) => state.notification)
+export const useNotificationActions = () => useNotificationStore((state) => state.actions)

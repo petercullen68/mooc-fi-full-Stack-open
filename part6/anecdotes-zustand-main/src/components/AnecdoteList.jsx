@@ -1,8 +1,14 @@
-import {useAnecdoteActions, useAnecdotes} from "../store.js";
+import {useAnecdoteActions, useAnecdotes, useNotificationActions} from "../store.js";
 
 const AnecdoteList = () => {
   const anecdotes = useAnecdotes()
-  const { vote } = useAnecdoteActions();
+  const { vote, remove } = useAnecdoteActions();
+  const { show }  = useNotificationActions();
+
+  const handleVote = async (anecdote) => {
+    await vote(anecdote.id)
+    show(`You voted for: ${anecdote.content}`, 'success')
+  }
 
   return (
     <div>
@@ -14,7 +20,8 @@ const AnecdoteList = () => {
             <div>{anecdote.content}</div>
             <div>
               has {anecdote.votes}
-              <button onClick={() => vote(anecdote.id)}>vote</button>
+              <button onClick={() => handleVote(anecdote)}>vote</button>
+              {anecdote.votes === 0 && (<button onClick={() => remove(anecdote.id)}>delete</button>)}
             </div>
           </div>
         ))}

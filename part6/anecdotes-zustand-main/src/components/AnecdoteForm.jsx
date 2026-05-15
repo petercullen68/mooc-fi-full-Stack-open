@@ -1,13 +1,12 @@
-import {useAnecdoteActions} from "../store.js";
+import {useAnecdoteActions, useNotificationActions} from "../store";
 
 const AnecdoteForm = () => {
-  const generateId = () => Number((Math.random() * 1000000).toFixed(0))
-
   const { add } = useAnecdoteActions();
-  const addAnecdote = (e) => {
+  const { show }  = useNotificationActions();
+  const addAnecdote = async (e) => {
     e.preventDefault()
-    const content = e.target.anecdote.value
-    add({ id: generateId(), content, votes: 0 })
+    await add(e.target.anecdote.value)
+    show(`Added: ${e.target.anecdote.value}`, 'success')
     e.target.reset()
   }
 
