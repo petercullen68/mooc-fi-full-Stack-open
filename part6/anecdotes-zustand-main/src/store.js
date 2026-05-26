@@ -33,12 +33,14 @@ const useAnecdoteStore = create((set, get) => ({
   },
 }))
 
+export default useAnecdoteStore
+
 export const useAnecdoteActions = () => useAnecdoteStore((state) => state.actions)
 
 export const useAnecdotes = () => {
   const anecdotes = useAnecdoteStore((state) => state.anecdotes)
   const filter = useAnecdoteStore((state) => state.filter)
-  return anecdotes.filter(n => n.content.includes(filter))
+  return anecdotes.toSorted((a, b) => b.votes - a.votes).filter(n => n.content.includes(filter))
 }
 
 export const useNotificationStore = create((set) => ({
